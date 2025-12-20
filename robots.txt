@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Point search engines to the sitemap
+Sitemap: https://www.julietglennon.com/sitemap.xml
+
+# Adjust or add Disallow rules if you have staging paths to hide
+# Disallow: /staging/
