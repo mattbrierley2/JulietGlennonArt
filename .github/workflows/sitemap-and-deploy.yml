@@ -54,6 +54,7 @@ jobs:
           cp scripts.js public/ || true
           cp sitemap.xml public/ || true
           cp robots.txt public/ || true
+          cp CNAME public/ || true
           if [ -d images ]; then cp -r images public/ || true; fi
 
       - name: Deploy to GitHub Pages (gh-pages branch)
@@ -62,3 +63,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
+          cname: www.julietglennon.com
+
+      - name: Notify search engines
+        if: always()
+        run: |
+          echo "Pinging Google with sitemap..."
+          curl -sS "https://www.google.com/ping?sitemap=https://www.julietglennon.com/sitemap.xml" || true
+          echo "Pinging Bing with sitemap..."
+          curl -sS "https://www.bing.com/ping?sitemap=https://www.julietglennon.com/sitemap.xml" || true
