@@ -1,0 +1,55 @@
+name: Generate sitemap and deploy
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  sitemap:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Run sitemap generator
+        shell: pwsh
+        run: |
+          .\generate-sitemap.ps1
+
+      - name: Commit sitemap if changed
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'sitemap.xml'
+          message: 'chore: update sitemap [skip ci]'
+          author_name: 'github-actions[bot]'
+          author_email: '41898282+github-actions[bot]@users.noreply.github.com'
+          push: true
+
+  deploy:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    needs: sitemap
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare Pages content
+        run: |
+          mkdir public
+          rsync -av --exclude='.git' --exclude='.github' ./ public/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
