@@ -47,8 +47,14 @@ jobs:
 
       - name: Prepare Pages content
         run: |
-          mkdir public
-          rsync -av --exclude='.git' --exclude='.github' ./ public/
+          rm -rf public
+          mkdir -p public
+          cp index.html public/ || true
+          cp style.css public/ || true
+          cp scripts.js public/ || true
+          cp sitemap.xml public/ || true
+          cp robots.txt public/ || true
+          if [ -d images ]; then cp -r images public/ || true; fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
