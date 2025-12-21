@@ -25,14 +25,17 @@ jobs:
           .\generate-sitemap.ps1
 
       - name: Commit sitemap if changed
-        uses: EndBug/add-and-commit@v9
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          add: 'sitemap.xml'
-          message: 'chore: update sitemap [skip ci]'
-          author_name: 'github-actions[bot]'
-          author_email: '41898282+github-actions[bot]@users.noreply.github.com'
-          push: true
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet --exit-code -- sitemap.xml; then
+            echo "No changes to sitemap.xml"
+          else
+            git add sitemap.xml
+            git commit -m "chore: update sitemap [skip ci]"
+            git push
+          fi
 
   deploy:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
