@@ -1,7 +1,7 @@
 name: Generate sitemap and deploy
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -27,6 +27,7 @@ jobs:
       - name: Commit sitemap if changed
         uses: EndBug/add-and-commit@v9
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           add: 'sitemap.xml'
           message: 'chore: update sitemap [skip ci]'
           author_name: 'github-actions[bot]'
