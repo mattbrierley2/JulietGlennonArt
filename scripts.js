@@ -92,6 +92,47 @@
   // center on load
   centerSlideshow();
 
+  // --- Input: wheel and touch swipe navigation (desktop carousel only) ---
+  let _lastWheel = 0;
+  container.addEventListener('wheel', (e) => {
+    if (window.innerWidth <= 500) return; // not in carousel mode
+    // allow page scroll when track isn't overflowed
+    e.preventDefault();
+    const now = Date.now();
+    if (now - _lastWheel < 300) return; // simple debounce
+    _lastWheel = now;
+    if (e.deltaY > 0) {
+      plusSlides(1);
+    } else if (e.deltaY < 0) {
+      plusSlides(-1);
+    }
+  }, { passive: false });
+
+  let _touchStartX = null;
+  let _touchStartTime = 0;
+  container.addEventListener('touchstart', (e) => {
+    if (window.innerWidth <= 500) return;
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    _touchStartX = t.clientX;
+    _touchStartTime = Date.now();
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if (window.innerWidth <= 500) return;
+    if (_touchStartX === null) return;
+    const t = e.changedTouches && e.changedTouches[0];
+    if (!t) { _touchStartX = null; return; }
+    const dx = t.clientX - _touchStartX;
+    const dt = Date.now() - _touchStartTime;
+    _touchStartX = null;
+    // swipe threshold
+    if (Math.abs(dx) > 40 && dt < 800) {
+      if (dx < 0) plusSlides(1); // swipe left -> next
+      else plusSlides(-1); // swipe right -> prev
+    }
+  }, { passive: true });
+
 })();
 
 // Mobile menu toggle
