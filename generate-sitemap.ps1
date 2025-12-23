@@ -11,7 +11,8 @@ function Encode-Url([string]$s) {
 }
 
 # Gather pages and images
-$pages = Get-ChildItem -Path $scriptDir -Filter *.html -Recurse -File
+# Exclude Google verification files (e.g. googlec<token>.html)
+$pages = Get-ChildItem -Path $scriptDir -Filter *.html -Recurse -File | Where-Object { $_.Name -notmatch '^google.*\.html$' }
 $imagesDir = Join-Path $scriptDir 'images'
 $images = @()
 if (Test-Path $imagesDir) {
