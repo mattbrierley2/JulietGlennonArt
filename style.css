@@ -152,6 +152,7 @@ body {
   height: 100%;
   transition: transform 0.5s ease;
   will-change: transform;
+  gap: 32px;
 }
 
 .mySlides {
@@ -159,10 +160,10 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column; /* stack image above caption */
-  align-items: center; /* center horizontally */
+  align-items: flex-start; /* align content to left so images sit at slide left */
   justify-content: flex-start; /* start from top so caption sits below image */
   position: relative;
-  padding: 0 16px; /* small gap between slides */
+  padding: 0; /* spacing is handled by .slides-track gap */
 }
 
 .mySlides img {
@@ -173,7 +174,7 @@ body {
      subtract an estimated caption height (48px) from available image space */
   max-height: calc(100% - 60px);
   max-width: none; /* allow image to be wider than container so it can be clipped */
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Hide any per-slide long description in the slide itself; show only in modal */

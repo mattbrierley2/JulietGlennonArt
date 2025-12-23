@@ -1,4 +1,4 @@
-// Carousel: keep all slides in a horizontal row and shift the track to center the focused slide.
+// Carousel: keep all slides in a horizontal row and shift the track to left-align the focused slide.
 (() => {
   const container = document.querySelector('.slideshow-container');
   const track = document.querySelector('.slides-track');
@@ -19,13 +19,10 @@
     const containerWidth = container.clientWidth;
     const trackWidth = track.scrollWidth;
 
-    // center of container
-    const containerCenter = containerWidth / 2;
-
-    // compute desired translate so slide center = container center
+    // compute desired translate so slide left aligns with container left
     const slide = slides[slideIndex];
-    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-    let desired = containerCenter - slideCenter;
+    // translate should move the track left by the slide's offsetLeft
+    let desired = -slide.offsetLeft;
 
     // clamp so we don't show empty space at ends
     const minTranslate = containerWidth - trackWidth; // negative or zero
