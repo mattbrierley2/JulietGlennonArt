@@ -271,10 +271,8 @@
     });
   });
 
-  // close on overlay click or close button
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target.closest('.modal-close')) closeModal();
-  });
+  // close on any click inside the modal (overlay, image, captions)
+  modal.addEventListener('click', () => closeModal());
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
@@ -285,4 +283,30 @@
     if (window.innerWidth <= 500 && modal.style.display === 'flex') closeModal();
   });
 
+})();
+
+// Center About page vertically (exclude small screens)
+(function() {
+  const about = document.querySelector('.about-main');
+  if (!about) return;
+
+  function centerAbout() {
+    if (window.innerWidth <= 500) {
+      about.style.marginTop = '';
+      about.style.marginBottom = '';
+      return;
+    }
+    const header = document.querySelector('.header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const viewportHeight = window.innerHeight;
+    const containerHeight = about.getBoundingClientRect().height;
+    const available = Math.max(0, viewportHeight - headerHeight);
+    const top = Math.max(0, (available - containerHeight) / 2);
+    about.style.marginTop = top + 'px';
+    about.style.marginBottom = top + 'px';
+  }
+
+  window.addEventListener('resize', () => requestAnimationFrame(centerAbout));
+  // run on load
+  requestAnimationFrame(centerAbout);
 })();
