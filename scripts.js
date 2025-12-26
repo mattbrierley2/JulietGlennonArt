@@ -263,7 +263,7 @@
     img.addEventListener('click', (e) => {
       if (window.innerWidth <= 500) return; // only in carousel view
       const slide = img.closest('.mySlides');
-      const title = slide ? (slide.querySelector('.titletext')?.textContent || '') : '';
+      const title = slide ? (slide.querySelector('.longtitletext')?.textContent || '') : '';
       const desc = slide ? (slide.querySelector('.descriptiontext')?.textContent || '') : '';
       const longdescEl = slide ? (slide.querySelector('.longdesc') || slide.querySelector('.longdescriptiontext')) : null;
       const longdesc = longdescEl ? longdescEl.innerHTML : (slide ? (slide.dataset.longdesc || '') : '');
