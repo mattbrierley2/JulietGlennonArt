@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://www.julietglennon.com/about.html</loc>
+    <lastmod>2025-12-26</lastmod>
+  </url>
+  <url>
     <loc>https://www.julietglennon.com/index.html</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
+  </url>
+  <url>
+    <loc>https://www.julietglennon.com/images/about/juliet.jpeg</loc>
+    <lastmod>2025-12-26</lastmod>
+    <image:image>
+      <image:loc>https://www.julietglennon.com/images/about/juliet.jpeg</image:loc>
+      <image:title>juliet</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.julietglennon.com/images/about/juliet2.jpg</loc>
+    <lastmod>2025-12-26</lastmod>
+    <image:image>
+      <image:loc>https://www.julietglennon.com/images/about/juliet2.jpg</image:loc>
+      <image:title>juliet2</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/A%20Peacetime%20Alliance.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/A%20Peacetime%20Alliance.jpeg</image:loc>
       <image:title>A Peacetime Alliance</image:title>
@@ -14,7 +34,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Albatross.jpg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Albatross.jpg</image:loc>
       <image:title>Albatross</image:title>
@@ -22,7 +42,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/As%20Above,%20So%20Below.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/As%20Above,%20So%20Below.jpeg</image:loc>
       <image:title>As Above, So Below</image:title>
@@ -30,7 +50,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/burro.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/burro.jpeg</image:loc>
       <image:title>burro</image:title>
@@ -38,7 +58,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Done.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Done.jpeg</image:loc>
       <image:title>Done</image:title>
@@ -46,7 +66,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Imagined%20Futures.jpg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Imagined%20Futures.jpg</image:loc>
       <image:title>Imagined Futures</image:title>
@@ -54,7 +74,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Saint.jpg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Saint.jpg</image:loc>
       <image:title>Saint</image:title>
@@ -62,7 +82,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Schemes.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Schemes.jpeg</image:loc>
       <image:title>Schemes</image:title>
@@ -70,7 +90,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Seven.JPG</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Seven.JPG</image:loc>
       <image:title>Seven</image:title>
@@ -78,7 +98,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Something%20Missing.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Something%20Missing.jpeg</image:loc>
       <image:title>Something Missing</image:title>
@@ -86,7 +106,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/The%20Archer.jpg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/The%20Archer.jpg</image:loc>
       <image:title>The Archer</image:title>
@@ -94,7 +114,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Wicked%20Game.jpeg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Wicked%20Game.jpeg</image:loc>
       <image:title>Wicked Game</image:title>
@@ -102,7 +122,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/With%20Hooves%20and%20Horns.jpg</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/With%20Hooves%20and%20Horns.jpg</image:loc>
       <image:title>With Hooves and Horns</image:title>
@@ -110,7 +130,7 @@
   </url>
   <url>
     <loc>https://www.julietglennon.com/images/drawings/Worthless.JPG</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <image:image>
       <image:loc>https://www.julietglennon.com/images/drawings/Worthless.JPG</image:loc>
       <image:title>Worthless</image:title>
