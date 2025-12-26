@@ -271,10 +271,8 @@
     });
   });
 
-  // close on overlay click or close button
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target.closest('.modal-close')) closeModal();
-  });
+  // close on any click inside the modal (overlay, image, captions)
+  modal.addEventListener('click', () => closeModal());
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
@@ -285,4 +283,138 @@
     if (window.innerWidth <= 500 && modal.style.display === 'flex') closeModal();
   });
 
+})();
+
+// Center About page vertically (exclude small screens)
+(function() {
+  const about = document.querySelector('.about-main');
+  if (!about) return;
+
+  // Simple about-image carousel: enable wheel + touch swipe to move
+  (function() {
+    const fig = document.querySelector('.about-figure');
+    if (!fig) return;
+    const imgs = Array.from(fig.querySelectorAll('img'));
+    if (imgs.length <= 1) return;
+
+    function setLayout() {
+      // Always present the about images as a horizontal carousel so
+      // wheel and swipe navigation behave consistently across widths.
+      fig.style.display = 'flex';
+      fig.style.overflowX = 'hidden';
+      imgs.forEach(img => {
+        img.style.flex = '0 0 100%';
+        img.style.width = '100%';
+        img.style.height = 'auto';
+        img.draggable = false;
+      });
+    }
+
+    setLayout();
+    window.addEventListener('resize', () => requestAnimationFrame(setLayout));
+
+    let index = 0;
+    let _dotsContainer = null;
+    function goTo(n) {
+      index = Math.max(0, Math.min(n, imgs.length - 1));
+      fig.scrollTo({ left: index * fig.clientWidth, behavior: 'smooth' });
+      // update dots active state
+      if (_dotsContainer) {
+        Array.from(_dotsContainer.children).forEach((dot, i) => {
+          dot.style.background = (i === index) ? '#333' : '#ccc';
+        });
+      }
+    }
+
+    // Wheel navigation (debounced)
+    let _lastWheel = 0;
+    fig.addEventListener('wheel', (e) => {
+      // Only intercept wheel when the figure actually overflows horizontally
+      // so page vertical scrolling still works when appropriate.
+      if (fig.scrollWidth <= fig.clientWidth) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now - _lastWheel < 300) return;
+      _lastWheel = now;
+      if (e.deltaY > 0) goTo(index + 1);
+      else if (e.deltaY < 0) goTo(index - 1);
+    }, { passive: false });
+
+    // Touch swipe
+    let _startX = null;
+    let _startTime = 0;
+    fig.addEventListener('touchstart', (e) => {
+      const t = e.touches && e.touches[0];
+      if (!t) return;
+      _startX = t.clientX;
+      _startTime = Date.now();
+    }, { passive: true });
+
+    fig.addEventListener('touchend', (e) => {
+      if (_startX === null) return;
+      const t = e.changedTouches && e.changedTouches[0];
+      if (!t) { _startX = null; return; }
+      const dx = t.clientX - _startX;
+      const dt = Date.now() - _startTime;
+      _startX = null;
+      if (Math.abs(dx) > 40 && dt < 800) {
+        if (dx < 0) goTo(index + 1);
+        else goTo(index - 1);
+      }
+    }, { passive: true });
+
+    // Click to advance (optional)
+    imgs.forEach(img => img.addEventListener('click', () => goTo((index + 1) % imgs.length)));
+
+    // pagination dots (insert below the figure)
+    (function createDots(){
+      const container = document.createElement('div');
+      container.className = 'about-dots';
+      container.style.textAlign = 'center';
+      container.style.marginTop = '8px';
+      imgs.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'about-dot';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Slide ' + (i + 1));
+        b.style.display = 'inline-block';
+        b.style.width = '10px';
+        b.style.height = '10px';
+        b.style.borderRadius = '50%';
+        b.style.border = 'none';
+        b.style.margin = '0 6px';
+        b.style.background = i === 0 ? '#333' : '#ccc';
+        b.style.padding = '0';
+        b.style.cursor = 'pointer';
+        b.addEventListener('click', () => goTo(i));
+        container.appendChild(b);
+      });
+      // insert after the figure so it's visually under the carousel
+      if (fig.parentNode) fig.parentNode.insertBefore(container, fig.nextSibling);
+      _dotsContainer = container;
+    })();
+
+    // Keep snap on resize
+    window.addEventListener('resize', () => requestAnimationFrame(() => goTo(index)));
+  })();
+
+  function centerAbout() {
+    if (window.innerWidth <= 500) {
+      about.style.marginTop = '';
+      about.style.marginBottom = '';
+      return;
+    }
+    const header = document.querySelector('.header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const viewportHeight = window.innerHeight;
+    const containerHeight = about.getBoundingClientRect().height;
+    const available = Math.max(0, viewportHeight - headerHeight);
+    const top = Math.max(0, (available - containerHeight) / 2);
+    about.style.marginTop = top + 'px';
+    about.style.marginBottom = top + 'px';
+  }
+
+  window.addEventListener('resize', () => requestAnimationFrame(centerAbout));
+  // run on load
+  requestAnimationFrame(centerAbout);
 })();
