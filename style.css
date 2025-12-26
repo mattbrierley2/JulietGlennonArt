@@ -215,10 +215,10 @@ body {
   position: static;
   color: #222;
   font-size: 16px;
-  padding: 8px 12px;
+  padding: 8px 0px;
   width: 100%;
   box-sizing: border-box;
-  text-align: center;
+  text-align: left;
   margin-top: 6px;
   background: transparent;
 }
@@ -229,7 +229,7 @@ body {
   position: static;
   width: 100%;
   box-sizing: border-box;
-  text-align: center;
+  text-align: left;
   background: transparent;
 }
 
@@ -375,13 +375,6 @@ body {
   /* hide carousel arrows on small screens */
   .prev, .next {
     display: none !important;
-  }
-
-  /* keep captions under images (they're already static) */
-  .titletext, .descriptiontext {
-    text-align: center;
-    padding-left: 4px;
-    padding-right: 4px;
   }
 
   /* Mobile hamburger button */
