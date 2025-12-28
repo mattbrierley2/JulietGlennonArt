@@ -272,8 +272,12 @@
   });
 
   // close on any click inside the modal (overlay, image, captions)
-  modal.addEventListener('click', () => closeModal());
-
+  modal.addEventListener('click', (e) => {
+    const classNames = e.target.className.toLowerCase();
+    const ignoredClasses = ['modal-title'];
+    if (!ignoredClasses.includes(classNames)) closeModal();
+  });
+  
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
@@ -343,6 +347,7 @@
     // Touch swipe
     let _startX = null;
     let _startTime = 0;
+    let _lastSwipe = 0;
     fig.addEventListener('touchstart', (e) => {
       const t = e.touches && e.touches[0];
       if (!t) return;
@@ -357,6 +362,9 @@
       const dx = t.clientX - _startX;
       const dt = Date.now() - _startTime;
       _startX = null;
+      const now = Date.now();
+      if (now - _lastSwipe < 300) return;
+      _lastSwipe = now;
       if (Math.abs(dx) > 40 && dt < 800) {
         if (dx < 0) goTo(index + 1);
         else goTo(index - 1);
