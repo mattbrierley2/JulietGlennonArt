@@ -110,6 +110,7 @@
 
   let _touchStartX = null;
   let _touchStartTime = 0;
+  let _lastSwipe = 0;
   container.addEventListener('touchstart', (e) => {
     if (window.innerWidth <= 500) return;
     const t = e.touches && e.touches[0];
@@ -126,6 +127,9 @@
     const dx = t.clientX - _touchStartX;
     const dt = Date.now() - _touchStartTime;
     _touchStartX = null;
+    const now = Date.now();
+    if (now - _lastSwipe < 300) return;
+    _lastSwipe = now;
     // swipe threshold
     if (Math.abs(dx) > 40 && dt < 800) {
       if (dx < 0) plusSlides(1); // swipe left -> next
