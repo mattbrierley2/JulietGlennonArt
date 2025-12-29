@@ -93,18 +93,37 @@
   centerSlideshow();
 
   // --- Input: wheel and touch swipe navigation (desktop carousel only) ---
+  let _accumulatedDelta = 0;
+  let _lastWheelTime = 0;
   let _lastWheel = 0;
   container.addEventListener('wheel', (e) => {
     if (window.innerWidth <= 500) return; // not in carousel mode
     // allow page scroll when track isn't overflowed
     e.preventDefault();
-    const now = Date.now();
-    if (now - _lastWheel < 300) return; // simple debounce
-    _lastWheel = now;
-    if (e.deltaY > 0) {
-      plusSlides(1);
-    } else if (e.deltaY < 0) {
-      plusSlides(-1);
+    if (e.deltaMode === 0) { // trackpad (pixels)
+      const now = Date.now();
+      _accumulatedDelta += e.deltaY;
+      if (now - _lastWheelTime > 500) {
+        _accumulatedDelta = e.deltaY; // reset if gap
+      }
+      _lastWheelTime = now;
+      if (Math.abs(_accumulatedDelta) > 50) {
+        if (_accumulatedDelta > 0) {
+          plusSlides(1);
+        } else {
+          plusSlides(-1);
+        }
+        _accumulatedDelta = 0;
+      }
+    } else { // mouse wheel (lines)
+      const now = Date.now();
+      if (now - _lastWheel < 300) return;
+      _lastWheel = now;
+      if (e.deltaY > 0) {
+        plusSlides(1);
+      } else if (e.deltaY < 0) {
+        plusSlides(-1);
+      }
     }
   }, { passive: false });
 
