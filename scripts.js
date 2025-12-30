@@ -9,6 +9,19 @@
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
+  function loadNearbyImages(currentIndex) {
+    const range = 4; // Load images for current index ± 2
+    const start = currentIndex; // Math.max(0, currentIndex - range);
+    const end = Math.min(slides.length - 1, currentIndex + range);
+    for (let i = start; i <= end; i++) {
+      const img = slides[i].querySelector('img.lazy');
+      if (img && !img.src) {
+        img.src = img.dataset.src;
+        img.classList.add('loaded');
+      }
+    }
+  }
+
   function updateTrack() {
     // If small screen, don't translate the track (vertical stacked layout)
     if (window.innerWidth <= 500) {
@@ -38,6 +51,7 @@
       slides.forEach((s) => s.classList.remove('active-slide'));
       slideIndex = clamp(n, 0, slides.length - 1);
       slides[slideIndex].classList.add('active-slide');
+      loadNearbyImages(slideIndex);
       return;
     }
 
@@ -45,6 +59,7 @@
     updateTrack();
     // mark active class for styling if desired
     slides.forEach((s, i) => s.classList.toggle('active-slide', i === slideIndex));
+    loadNearbyImages(slideIndex);
   }
 
   // Next/previous controls
@@ -448,4 +463,36 @@
   window.addEventListener('resize', () => requestAnimationFrame(centerAbout));
   // run on load
   requestAnimationFrame(centerAbout);
+})();
+
+// Lazy loading for images (fallback for mobile or when preload doesn't cover)
+(() => {
+  const lazyImages = document.querySelectorAll('.lazy');
+
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (!img.src) { // Only load if not already loaded by preload
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+          }
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px' // Load 50px before entering viewport
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+  } else {
+    // Fallback: load all images immediately
+    lazyImages.forEach(img => {
+      if (!img.src) {
+        img.src = img.dataset.src;
+        img.classList.add('loaded');
+      }
+    });
+  }
 })();
