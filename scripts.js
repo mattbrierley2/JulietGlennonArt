@@ -465,6 +465,32 @@
   requestAnimationFrame(centerAbout);
 })();
 
+// Center contact page content
+(() => {
+  const contact = document.querySelector('.contact-main');
+  if (!contact) return;
+
+  function centerContact() {
+    if (window.innerWidth <= 500) {
+      contact.style.marginTop = '';
+      contact.style.marginBottom = '';
+      return;
+    }
+    const header = document.querySelector('.header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const viewportHeight = window.innerHeight;
+    const containerHeight = contact.getBoundingClientRect().height;
+    const available = Math.max(0, viewportHeight - headerHeight);
+    const top = Math.max(0, (available - containerHeight) / 2);
+    contact.style.marginTop = top + 'px';
+    contact.style.marginBottom = top + 'px';
+  }
+
+  window.addEventListener('resize', () => requestAnimationFrame(centerContact));
+  // run on load
+  requestAnimationFrame(centerContact);
+})();
+
 // Lazy loading for images (fallback for mobile or when preload doesn't cover)
 (() => {
   const lazyImages = document.querySelectorAll('.lazy');
