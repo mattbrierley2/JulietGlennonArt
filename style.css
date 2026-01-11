@@ -53,6 +53,12 @@ button {
   display: none;
 }
 
+.social-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 @media screen and (max-width: 500px) {
   .header a {
     display: block;
