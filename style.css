@@ -658,11 +658,14 @@ button[type="submit"]:hover {
 }
 
 .product-carousel-dots {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 6px 0;
   background-color: #fafafa;
   gap: 4px;
+  min-height: 20px;
 }
 
 .product-carousel-dots.visible {
