@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Store — Juliet Glennon</title>
+    <meta name="description" content="Purchase prints and originals from Juliet Glennon's gallery.">
+    <link rel="canonical" href="https://www.julietglennon.com/store.html">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Juliet Glennon">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:site_name" content="Juliet Glennon">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Store — Juliet Glennon">
+    <meta property="og:description" content="Purchase prints and originals from Juliet Glennon's gallery.">
+    <meta property="og:url" content="https://www.julietglennon.com/store.html">
+
+    <!-- Fallback icon / theme -->
+    <link rel="icon" href="/favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">Juliet Glennon</a>
+        <div class="header-right">
+          <div class="navbar">
+            <div class="dropdown">
+              <button class="dropbtn">Work</button>
+              <div class="dropdown-content">
+                <a href="/">Drawings</a>
+              </div>
+            </div>
+            <a href="store.html" class="active">Store</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.instagram.com/julietglennon/" target="_blank"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+        <!-- Mobile hamburger (visible on small screens) -->
+        <button class="hamburger" aria-label="Menu" aria-expanded="false">
+          <span class="hamburger-icon"></span>
+        </button>
+        <div class="mobile-menu" role="menu" aria-hidden="true">
+          <a href="/" role="menuitem">Drawings</a>
+          <a href="store.html" role="menuitem">Store</a>
+          <a href="about.html" role="menuitem">About</a>
+          <a href="contact.html" role="menuitem">Contact</a>
+          <div>
+            <a href="https://www.instagram.com/julietglennon/" role="menuitem" target="_blank"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+    </div>
+
+    <div class="shop-container">
+        <!-- <p class="shop-intro">Purchase prints and originals from my gallery.</p> -->
+
+        <div class="products-grid" id="productsGrid">
+            <!-- PRODUCT TEMPLATE - Copy and customize below to add products
+            <div class="product-card">
+                <div class="product-carousel">
+                    <img src="images/drawings/Worthless1.JPG" alt="[Artwork Title]">
+                </div>
+                <div class="product-carousel-dots"></div>
+                <div class="product-info">
+                    <h2 class="product-title">[Artwork Title]</h2>
+                    <p class="product-type">Print / Original</p>
+                    <p class="product-description">[Description - e.g., "A4 giclée print on archival paper"]</p>
+                    <p class="product-price">$[Price]</p>
+                    <a href="[STRIPE_PAYMENT_LINK]" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            -->
+
+            <!-- <div class="product-card">
+                <div class="product-carousel">
+                    <img src="images/drawings/Worthless.JPG" alt="Worthless">
+                </div>
+                <div class="product-carousel-dots"></div>
+                <div class="product-info">
+                    <h2 class="product-title">Worthless</h2>
+                    <p class="product-type">A4 Giclée Print</p>
+                    <p class="product-description">High-quality archival print on premium paper. Signed and numbered.</p>
+                    <p class="product-price">$35</p>
+                    <a href="https://buy.stripe.com/test_14A8wH5hLaIv0Qbc8x9AA00" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div> -->
+
+            <div class="product-card">
+                <div class="product-carousel">
+                    <img src="images/drawings/burro.jpeg" alt="Assumptions">
+                </div>
+                <div class="product-carousel-dots"></div>
+                <div class="product-info">
+                    <h2 class="product-title">Assumptions</h2>
+                    <p class="product-type">Original charcoal drawing on paper</p>
+                    <p class="product-description">Framed original charcoal drawing on paper,  approximately 4.5 x 7 inches.</p>
+                    <p class="product-price">$350</p>
+                    <a href="https://buy.stripe.com/8x26ozfGx7cOdoD9GOgjC00" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-carousel">
+                    <img src="images/shop/Something Missing.jpeg" alt="Something Missing">
+                </div>
+                <div class="product-carousel-dots"></div>
+                <div class="product-info">
+                    <h2 class="product-title">Something Missing</h2>
+                    <p class="product-type">Original charcoal drawing on paper</p>
+                    <p class="product-description">Framed original charcoal drawing on paper,  approximately 4.5 x 8.25 inches.</p>
+                    <p class="product-price">$500</p>
+                    <a href="https://buy.stripe.com/eVq8wH8e59kWckzbOWgjC01" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <!-- Image modal (opened when clicking a product image) -->
+    <div id="image-modal" class="image-modal" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        <img src="" alt="" class="modal-image">
+        <div class="modal-caption">
+          <div class="modal-title"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
